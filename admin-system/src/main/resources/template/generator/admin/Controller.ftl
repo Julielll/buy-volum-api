@@ -1,7 +1,7 @@
 package ${package}.rest;
 
-import me.zhengjie.aop.log.Log;
-import me.zhengjie.exception.BadRequestException;
+import cn.wewin.aop.log.Log;
+import cn.wewin.exception.BadRequestException;
 import ${package}.domain.${className};
 import ${package}.service.${className}Service;
 import ${package}.service.dto.${className}DTO;
