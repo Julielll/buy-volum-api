@@ -15,9 +15,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
-* @author JULIE
-* @date 2019-10-09
-*/
+ * @author JULIE
+ * @date 2019-10-09
+ */
 @RestController
 @RequestMapping("api")
 public class GamesController {
@@ -32,27 +32,27 @@ public class GamesController {
 
     @Log("查询Games")
     @GetMapping(value = "/games")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity getGamess(GamesDTO resources, Pageable pageable){
-        return new ResponseEntity(gamesQueryService.queryAll(resources,pageable),HttpStatus.OK);
+    @PreAuthorize("hasAnyRole('ADMIN','GAME_ALL','GAME_SELECT')")
+    public ResponseEntity getGamess(GamesDTO resources, Pageable pageable) {
+        return new ResponseEntity(gamesQueryService.queryAll(resources, pageable), HttpStatus.OK);
     }
 
     @Log("新增Games")
     @PostMapping(value = "/games")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity create(@Validated @RequestBody Games resources){
+    @PreAuthorize("hasAnyRole('ADMIN','GAME_ALL','GAME_CREATE')")
+    public ResponseEntity create(@Validated @RequestBody Games resources) {
         if (resources.getId() != null) {
-            throw new BadRequestException("A new "+ ENTITY_NAME +" cannot already have an ID");
+            throw new BadRequestException("A new " + ENTITY_NAME + " cannot already have an ID");
         }
-        return new ResponseEntity(gamesService.create(resources),HttpStatus.CREATED);
+        return new ResponseEntity(gamesService.create(resources), HttpStatus.CREATED);
     }
 
     @Log("修改Games")
     @PutMapping(value = "/games")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity update(@Validated @RequestBody Games resources){
+    @PreAuthorize("hasAnyRole('ADMIN','GAME_ALL','GAME_EDIT')")
+    public ResponseEntity update(@Validated @RequestBody Games resources) {
         if (resources.getId() == null) {
-            throw new BadRequestException(ENTITY_NAME +" ID Can not be empty");
+            throw new BadRequestException(ENTITY_NAME + " ID Can not be empty");
         }
         gamesService.update(resources);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -60,8 +60,8 @@ public class GamesController {
 
     @Log("删除Games")
     @DeleteMapping(value = "/games/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity delete(@PathVariable Long id){
+    @PreAuthorize("hasAnyRole('ADMIN','GAME_ALL','GAME_DELETE')")
+    public ResponseEntity delete(@PathVariable Long id) {
         gamesService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }

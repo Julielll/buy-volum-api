@@ -3,6 +3,7 @@ package cn.wewin.backend.modules.system.rest;
 import cn.wewin.backend.config.DataScope;
 import cn.wewin.backend.modules.system.domain.Role;
 import cn.wewin.backend.modules.system.domain.User;
+import cn.wewin.backend.modules.system.domain.vo.UserVO;
 import cn.wewin.backend.modules.system.service.DeptService;
 import cn.wewin.backend.modules.system.service.RoleService;
 import cn.wewin.backend.modules.system.service.UserService;
@@ -151,16 +152,16 @@ public class UserController {
 
     /**
      * 修改密码
-     * @param user
+     * @param userVO
      * @return
      */
     @PostMapping(value = "/users/updatePass")
-    public ResponseEntity updatePass(@RequestBody User user){
+    public ResponseEntity updatePass(@RequestBody UserVO userVO){
         UserDetails userDetails = SecurityUtils.getUserDetails();
-        if(userDetails.getPassword().equals(EncryptUtils.encryptPassword(user.getPassword()))){
+        if(userDetails.getPassword().equals(EncryptUtils.encryptPassword(userVO.getNewPass()))){
             throw new BadRequestException("新密码不能与旧密码相同");
         }
-        userService.updatePass(userDetails.getUsername(),EncryptUtils.encryptPassword(user.getPassword()));
+        userService.updatePass(userDetails.getUsername(),EncryptUtils.encryptPassword(userVO.getNewPass()));
         return new ResponseEntity(HttpStatus.OK);
     }
 

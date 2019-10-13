@@ -4,12 +4,12 @@ spring:
     druid:
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      url: jdbc:log4jdbc:mysql://localhost:3306/buy_volume?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
-      username: root
-      password: 123456
-#      url: jdbc:log4jdbc:mysql://192.168.10.223:3306/eladmin?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
-#      username: eladmin
-#      password: ElAdmin@weWiN2019
+      url: jdbc:log4jdbc:mysql://106.14.96.168:2002/buy_volume?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+      username: wewin
+      password: 9IjNxDr$#wa
+#      url: jdbc:log4jdbc:mysql://localhost:3306/buy_volume?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+#      username: root
+#      password: 123456
 
       # 初始化连接大小
       initial-size: 5

@@ -32,14 +32,14 @@ public class GameAdvertController {
 
     @Log("查询GameAdvert")
     @GetMapping(value = "/gameAdvert")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','ADVERT_ALL','ADVERT_SELECT')")
     public ResponseEntity getGameAdverts(GameAdvertDTO resources, Pageable pageable){
         return new ResponseEntity(gameAdvertQueryService.queryAll(resources,pageable),HttpStatus.OK);
     }
 
     @Log("新增GameAdvert")
     @PostMapping(value = "/gameAdvert")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','ADVERT_ALL','ADVERT_CREATE')")
     public ResponseEntity create(@Validated @RequestBody GameAdvert resources){
         if (resources.getId() != null) {
             throw new BadRequestException("A new "+ ENTITY_NAME +" cannot already have an ID");
@@ -49,7 +49,7 @@ public class GameAdvertController {
 
     @Log("修改GameAdvert")
     @PutMapping(value = "/gameAdvert")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','ADVERT_ALL','ADVERT_EDIT')")
     public ResponseEntity update(@Validated @RequestBody GameAdvert resources){
         if (resources.getId() == null) {
             throw new BadRequestException(ENTITY_NAME +" ID Can not be empty");
@@ -60,7 +60,7 @@ public class GameAdvertController {
 
     @Log("删除GameAdvert")
     @DeleteMapping(value = "/gameAdvert/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','ADVERT_ALL','ADVERT_DELETE')")
     public ResponseEntity delete(@PathVariable Long id){
         gameAdvertService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
