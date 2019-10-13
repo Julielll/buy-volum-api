@@ -18,6 +18,11 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>cn.wewin</groupId>
             <artifactId>admin-generator</artifactId>
             <version>1.0</version>
@@ -46,12 +51,28 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>2.1.6.RELEASE</version>
         </dependency>
 
         <!-- quartz -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.kaix</groupId>
+            <artifactId>admin-common</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.kaix</groupId>
+            <artifactId>admin-logging</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.kaix</groupId>
+            <artifactId>admin-tools</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 
@@ -60,6 +81,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.5.RELEASE</version>
             </plugin>
             <!-- 跳过单元测试 -->
             <plugin>
